@@ -884,7 +884,7 @@ function updateGauge() {
 
   if (today >= limit) {
     warn.className = 'warn-banner show danger';
-    warn.textContent = '⚠️ You've reached your daily caffeine limit. Consider stopping for today.';
+    warn.textContent = '⚠️ You have reached your daily caffeine limit. Consider stopping for today.';
     sleep.style.display = 'none';
   } else if (today >= limit * 0.8) {
     warn.className = 'warn-banner show warn';
