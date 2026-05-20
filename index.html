@@ -66,10 +66,16 @@
     .nav {
       display: flex;
       background: var(--bg2);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
+      border-top: 1px solid var(--border);
+      border-bottom: none;
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 480px;
       z-index: 100;
+      padding-bottom: env(safe-area-inset-bottom);
     }
     .nav-btn {
       flex: 1;
@@ -94,14 +100,14 @@
     .nav-btn.active::after {
       content: '';
       position: absolute;
-      bottom: 0; left: 20%; right: 20%;
+      top: 0; left: 20%; right: 20%;
       height: 2px;
       background: var(--amber);
-      border-radius: 2px 2px 0 0;
+      border-radius: 0 0 2px 2px;
     }
 
     /* PAGES */
-    .page { display: none; padding: 0 0 100px; }
+    .page { display: none; padding: 0 0 140px; }
     .page.active { display: block; }
 
     /* HEADER */
@@ -386,7 +392,12 @@
 
     /* AD BANNER */
     .ad-banner {
-      margin: 0 16px 12px;
+      position: fixed;
+      bottom: 64px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 32px);
+      max-width: 448px;
       background: var(--bg3);
       border: 1px dashed var(--border2);
       border-radius: var(--radius-sm);
@@ -394,6 +405,7 @@
       text-align: center;
       font-size: 12px;
       color: var(--text4);
+      z-index: 99;
     }
     .ad-banner.hidden { display: none; }
 
@@ -503,22 +515,6 @@
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav">
-  <button class="nav-btn active" data-page="home" onclick="showPage('home',this)">
-    <span class="icon">☕</span>
-    <span>Today</span>
-  </button>
-  <button class="nav-btn" data-page="history" onclick="showPage('history',this)">
-    <span class="icon">📋</span>
-    <span>History</span>
-  </button>
-  <button class="nav-btn" data-page="settings" onclick="showPage('settings',this)">
-    <span class="icon">⚙️</span>
-    <span>Settings</span>
-  </button>
-</nav>
-
 <!-- ═══════════════ HOME PAGE ═══════════════ -->
 <div id="page-home" class="page active">
 
@@ -577,9 +573,6 @@
       <div class="sleep-sub" id="sleepSub">Caffeine will be below 50 mg</div>
     </div>
   </div>
-
-  <!-- AD BANNER -->
-  <div class="ad-banner" id="adBanner">Advertisement</div>
 
   <!-- DECAY CHART -->
   <div class="decay-wrap">
@@ -1282,5 +1275,25 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js').catch(() => {});
 }
 </script>
+
+<!-- AD BANNER (fixed above bottom nav) -->
+<div class="ad-banner" id="adBanner">Advertisement</div>
+
+<!-- NAV (fixed bottom) -->
+<nav class="nav">
+  <button class="nav-btn active" data-page="home" onclick="showPage('home',this)">
+    <span class="icon">☕</span>
+    <span>Today</span>
+  </button>
+  <button class="nav-btn" data-page="history" onclick="showPage('history',this)">
+    <span class="icon">📋</span>
+    <span>History</span>
+  </button>
+  <button class="nav-btn" data-page="settings" onclick="showPage('settings',this)">
+    <span class="icon">⚙️</span>
+    <span>Settings</span>
+  </button>
+</nav>
+
 </body>
 </html>
