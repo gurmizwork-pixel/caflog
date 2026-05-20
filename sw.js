@@ -1,4 +1,4 @@
-const CACHE = 'caflog-v1';
+const CACHE = 'caflog-v3';
 const ASSETS = [
   './',
   './index.html',
