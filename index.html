@@ -673,7 +673,7 @@
     <!-- About -->
     <div class="section-title" style="padding-left:0">About</div>
     <div class="settings-card">
-      <div class="settings-row" onclick="document.getElementById('howModal').classList.add('show')">
+      <div class="settings-row" onclick="openHowModal()">
         <div class="settings-row-lbl">How it works</div>
         <div class="settings-chevron">›</div>
       </div>
@@ -708,7 +708,7 @@
     <div style="color:var(--text2);font-size:14px;line-height:1.7;margin-bottom:20px">
       ⚠️ Individual metabolism varies based on age, weight, genetics, and medications. This is an estimate, not medical advice.
     </div>
-    <button class="btn-amber" style="width:100%;text-align:center" onclick="document.getElementById('howModal').classList.remove('show')">Got it</button>
+    <button class="btn-amber" style="width:100%;text-align:center" onclick="closeHowModal()">Got it</button>
   </div>
 </div>
 
@@ -1246,6 +1246,14 @@ function refresh() {
   renderTodayList();
   renderDrinkGrid();
   updateGauge();
+}
+
+// ═══ HOW IT WORKS MODAL ═══════════════════════════════════════════
+function openHowModal() {
+  document.getElementById('howModal').classList.add('show');
+}
+function closeHowModal() {
+  document.getElementById('howModal').classList.remove('show');
 }
 
 // ═══ INIT ═══════════════════════════════════════════════════════════
